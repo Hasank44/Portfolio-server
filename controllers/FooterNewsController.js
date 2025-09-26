@@ -1,6 +1,7 @@
 const FooterNews = require('../models/FooterNews');
 const validator = require(('validator'));
 const AchievementCounter = require('../models/AchievementCounter');
+const { default: mongoose } = require('mongoose');
 
 exports.footerNewsGetController = async ( req, res ) => {
     try {
@@ -70,3 +71,28 @@ exports.footerNewsPostController = async ( req, res ) => {
     };
 };
 
+exports.footerNewsDeleteController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const matchId = await FooterNews.findById(id);
+        if (!matchId) {
+            return res.status(404).json({
+                message: 'Skill Not Found'
+            });
+        };
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(500).json({
+                message: 'Invalid Params Id'
+            });
+        };
+
+        await FooterNews.findOneAndDelete({ _id: id });
+        return res.status(200).json({
+            message: 'Footer News Deleted Successfully'
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Server Error Occurred'
+        });
+    };
+};

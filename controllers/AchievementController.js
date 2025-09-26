@@ -90,7 +90,7 @@ exports.achievementUpdateController = async ( req, res ) => {
             });
         };
         return res.status(202).json({
-            message: 'Achievement Retrieved',
+            message: 'Achievement Update Success',
             result: updated
         });
     } catch (error) {

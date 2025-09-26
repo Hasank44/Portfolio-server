@@ -3,11 +3,12 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const roleMiddleware = require('../middlewares/roleMiddleware');
 
 const {
-    serviceGetController, servicePostController, serviceUpdateController
+    serviceGetController, servicePostController, serviceUpdateController, serviceDeleteController
 } = require('../controllers/serviceController');
  
 router.get('/', serviceGetController);
 router.post('/', authMiddleware, roleMiddleware('admin'), servicePostController);
 router.put('/:id', authMiddleware, roleMiddleware('admin'), serviceUpdateController);
+router.delete('/:id', authMiddleware, roleMiddleware('admin'), serviceDeleteController);
 
 module.exports = router;

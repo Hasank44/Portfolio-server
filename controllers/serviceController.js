@@ -93,8 +93,34 @@ exports.serviceUpdateController = async ( req, res ) => {
             });
         };
         return res.status(202).json({
-            message: 'Update Successfully',
+            message: 'Service Update Successfully',
             result: updated
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Server Error Occurred'
+        });
+    };
+};
+
+exports.serviceDeleteController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const matchId = await Service.findById(id);
+        if (!matchId) {
+            return res.status(404).json({
+                message: 'Skill Not Found'
+            });
+        };
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(500).json({
+                message: 'Invalid Params Id'
+            });
+        };
+
+        await Service.findOneAndDelete({ _id: id });
+        return res.status(200).json({
+            message: 'Service Deleted Successfully'
         });
     } catch (error) {
         return res.status(500).json({

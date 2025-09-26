@@ -1,8 +1,6 @@
 const Skill = require('../models/Skill');
 const skillValidator = require('../validators/skillValidator');
-const verifyToken = require('../utils/verifyToken');
 const { default: mongoose } = require('mongoose');
-const SECRET = process.env.JWT_SECRET;
 
 exports.skillGetController = async ( req, res ) => {
     try {
@@ -89,7 +87,7 @@ exports.skillUpdateController = async ( req, res ) => {
             });
         };
         return res.status(202).json({
-            message: 'Update Successfully',
+            message: 'Skill Update Successfully',
             result: updated
         });
     } catch (error) {

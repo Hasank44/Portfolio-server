@@ -1,6 +1,7 @@
 const Contact = require('../models/Contact');
 const AchievementCounter = require('../models/AchievementCounter');
 const contactValidator = require('../validators/contactValidator');
+const { default: mongoose } = require('mongoose');
 
 exports.contactGetController = async ( req, res ) => {
     try {
@@ -50,6 +51,32 @@ exports.contactPostController = async ( req, res ) => {
         return res.status(201).json({
             message: 'Message Sent Successfully',
             result: savedContact
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Server Error Occurred'
+        });
+    };
+};
+
+exports.contactDeleteController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const matchId = await Contact.findById(id);
+        if (!matchId) {
+            return res.status(404).json({
+                message: 'Skill Not Found'
+            });
+        };
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(500).json({
+                message: 'Invalid Params Id'
+            });
+        };
+
+        await Contact.findOneAndDelete({ _id: id });
+        return res.status(200).json({
+            message: 'Contact Deleted Successfully'
         });
     } catch (error) {
         return res.status(500).json({

@@ -99,7 +99,7 @@ exports.homeUpdateController = async ( req, res ) => {
             });
         };
         return res.status(202).json({
-            message: 'Update Successfully',
+            message: 'Home Update Successfully',
             result: updated
         });
     } catch (error) {
