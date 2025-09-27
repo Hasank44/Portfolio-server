@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
-const Project = require('../models/Project');
+const Service = require('../models/Service');
 
-exports.projectEnable =  async (req, res) => {
+exports.serviceEnable =  async (req, res) => {
     try {
     const { id } = req.params;
     const { isEnable } = req.body;
@@ -16,25 +16,25 @@ exports.projectEnable =  async (req, res) => {
             message: 'Invalid Params Id'
         });
     };  
-    const updatedProject = await Project.findByIdAndUpdate(
+    const updatedService = await Service.findByIdAndUpdate(
       {_id: id,},
       { isEnable },
       { new: true }
     );
 
-    if (!updatedProject) {
+    if (!updatedService) {
         return res.status(404).json({
-            message: "Project not found"
+            message: "Service not found"
         });
     };
 
     return res.status(202).json({
-      message: `Project ${isEnable ? "Enabled" : "Disabled"} successfully`,
-      result: updatedProject,
+      message: `Service ${isEnable ? "Enabled" : "Disabled"} successfully`,
+      result: updatedService,
     });
   } catch (error) {
         res.status(500).json({
-            message: "Failed to update project status",
+            message: "Failed to update Service status",
         });
     };
 };

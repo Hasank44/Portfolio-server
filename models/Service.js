@@ -11,6 +11,10 @@ const serviceSchema = new Schema({
     description: {
         type: String,
         trim: true,
+    },
+    isEnable: {
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true

@@ -26,18 +26,31 @@ exports.serviceGetController = async ( req, res ) => {
     };
 };
 
+exports.enableServiceGetController = async (req, res) => {
+    try {
+        const enableServices = await Service.find({ isEnable: true });
+        if (!enableServices || enableServices.length < 1) {
+            return res.status(404).json({
+                message: 'Projects Not Found'
+            });
+        };
+        return res.status(200).json({
+            message: 'Enable Projects Retrieved Successfully',
+            result: enableServices
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Server Error Occurred'
+        });
+    };
+};
+
 exports.servicePostController = async ( req, res ) => {
     try {
         const { icon ,title, description } = req.body;
         const validate = serviceValidator({ icon, title, description });
         if (!validate.isValid) {
             return res.status(400).json(validate.error);
-        };
-        const isService = await Service.find({});
-        if (isService.length === 6 ) {
-            return res.status(501).json({
-                message: 'Service Created Failed Please Update Existing Service'
-            });
         };
         const newService = await Service({
             icon,

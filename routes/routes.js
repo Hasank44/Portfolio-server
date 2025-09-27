@@ -13,6 +13,7 @@ const achieveCount = require('./achievementCountRoute');
 const skillRoute = require('./skillRoute');
 const footerNewsRoute = require('./footerNewsRoute');
 const projectEnable = require('./projectEnableRoute');
+const serviceEnable = require('./serviceEnableRoute');
 
 const routes = [
     {
@@ -74,6 +75,10 @@ const routes = [
     {
         path: '/api/project/enable',
         handler: projectEnable
+    },
+    {
+        path: '/api/service/enable',
+        handler: serviceEnable
     },
 ];
 

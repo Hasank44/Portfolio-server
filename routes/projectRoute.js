@@ -6,7 +6,7 @@ const {
 } = require('../controllers/projectController');
  
 
-router.get('/', projectGetController);
+router.get('/', authMiddleware, roleMiddleware('admin'), projectGetController);
 router.post('/', authMiddleware, roleMiddleware('admin'), projectPostController);
 router.put('/:id', authMiddleware, roleMiddleware('admin'), projectUpdateController);
 router.delete('/:id', authMiddleware, roleMiddleware('admin'), projectDeleteController);
