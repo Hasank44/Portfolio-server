@@ -12,6 +12,7 @@ const serviceRoute = require('./serviceRoute');
 const achieveCount = require('./achievementCountRoute');
 const skillRoute = require('./skillRoute');
 const footerNewsRoute = require('./footerNewsRoute');
+const projectEnable = require('./projectEnableRoute');
 
 const routes = [
     {
@@ -69,7 +70,11 @@ const routes = [
     {
         path: '/api/footer',
         handler: footerNewsRoute
-    }
+    },
+    {
+        path: '/api/project/enable',
+        handler: projectEnable
+    },
 ];
 
 module.exports = app =>{

@@ -39,7 +39,7 @@ exports.projectPostController = async ( req, res ) => {
             description,
             github,
             link,
-            image
+            image,
         })
         const savedProject = await newProject.save();
          if (!savedProject) {

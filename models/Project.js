@@ -19,6 +19,10 @@ const projectSchema = new Schema({
     image: {
         type: String,
         trim: true
+    },
+    isEnable: {
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true
