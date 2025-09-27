@@ -27,6 +27,25 @@ exports.projectGetController = async ( req, res ) => {
     };
 };
 
+exports.enableProjectGetController = async (req, res) => {
+    try {
+        const enableProjects = await Project.find({ isEnable: true })
+        if (!enableProjects || enableProjects.length < 1) {
+            return res.status(404).json({
+                message: 'Projects Not Found'
+            });
+        };
+        return res.status(200).json({
+            message: 'Enable Projects Retrieved Successfully',
+            result: enableProjects
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Server Error Occurred'
+        });
+    };
+};
+
 exports.projectPostController = async ( req, res ) => {
     try {
         const { title, description, github, link, image } = req.body;

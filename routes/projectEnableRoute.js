@@ -4,7 +4,10 @@ const roleMiddleware = require('../middlewares/roleMiddleware');
 
 const { 
     projectEnable
- } = require('../controllers/projectEnableController');
+} = require('../controllers/projectEnableController');
+const { enableProjectGetController } = require('../controllers/projectController');
+
+router.get('/', enableProjectGetController);
 router.put('/:id', authMiddleware, roleMiddleware('admin'), projectEnable);
 
 module.exports = router;
