@@ -6,6 +6,9 @@ const validate = user => {
     if (!user.image) {
         error.message = 'Please Provide Your Image';
     }
+    if (!user.name) {
+        error.message = 'Please Provide Your Name';
+    }
 
     return {
         error,

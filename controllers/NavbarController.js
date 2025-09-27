@@ -28,8 +28,8 @@ exports.navbarGetController = async ( req, res ) => {
 
 exports.navbarPostController = async ( req, res ) => {
     try {
-        const { image } = req.body;
-        const validate = navbarValidator({ image });
+        const { image, name } = req.body;
+        const validate = navbarValidator({ image, name });
         if (!validate.isValid) {
             return res.status(400).json(validate.error);
         };
@@ -40,7 +40,8 @@ exports.navbarPostController = async ( req, res ) => {
             });
         };
         const newNavbar = await Navbar({
-            image
+            image,
+            name
         })
         const savedNav = await newNavbar.save();
         return res.status(201).json({
@@ -57,8 +58,8 @@ exports.navbarPostController = async ( req, res ) => {
 exports.navbarUpdateController = async ( req, res ) => {
     try {
         const { id } = req.params;
-        const { image } = req.body;
-        const validate = navbarValidator({ image });
+        const { image, name } = req.body;
+        const validate = navbarValidator({ image, name });
         if (!validate.isValid) {
             return res.status(400).json(validate.error);
         };
@@ -78,7 +79,8 @@ exports.navbarUpdateController = async ( req, res ) => {
             _id: id
         }, {
             $set: {
-                image
+                image,
+                name
             }
         }, {
             new: true
