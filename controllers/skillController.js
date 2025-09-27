@@ -26,6 +26,25 @@ exports.skillGetController = async ( req, res ) => {
     };
 };
 
+exports.enableSkillGetController = async (req, res) => {
+    try {
+        const enableSkills = await Skill.find({ isEnable: true });
+        if (!enableSkills || enableSkills.length < 1) {
+            return res.status(404).json({
+                message: 'Skill Not Found'
+            });
+        };
+        return res.status(200).json({
+            message: 'Enable Skills Retrieved Successfully',
+            result: enableSkills
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Server Error Occurred'
+        });
+    };
+};
+
 exports.skillPostController = async ( req, res ) => {
     try {
         const { title, icon, type } = req.body;

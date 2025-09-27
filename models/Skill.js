@@ -12,6 +12,10 @@ const skillSchema = new Schema({
   type: {
     type: String,
     trim: true
+  },
+  isEnable: {
+    type: Boolean,
+    default: true
   }
 
 }, {

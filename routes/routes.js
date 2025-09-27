@@ -14,6 +14,7 @@ const skillRoute = require('./skillRoute');
 const footerNewsRoute = require('./footerNewsRoute');
 const projectEnable = require('./projectEnableRoute');
 const serviceEnable = require('./serviceEnableRoute');
+const skillEnable = require('./skillEnableRoute');
 
 const routes = [
     {
@@ -79,6 +80,10 @@ const routes = [
     {
         path: '/api/service/enable',
         handler: serviceEnable
+    },
+    {
+        path: '/api/skill/enable',
+        handler: skillEnable
     },
 ];
 
