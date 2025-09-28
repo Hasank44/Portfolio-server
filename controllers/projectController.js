@@ -168,7 +168,7 @@ exports.projectDeleteController = async ( req, res ) => {
             });
         };
         const deleted = await Project.findOneAndDelete({ _id: id });
-        if (!deleted) {
+        if (deleted) {
             return res.status(200).json({
                 message: 'Project Delete Successfully'
             });
