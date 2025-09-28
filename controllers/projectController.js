@@ -156,7 +156,7 @@ exports.projectUpdateController = async ( req, res ) => {
 exports.projectDeleteController = async ( req, res ) => {
     try {
         const { id } = req.params;
-        const matchId = await Skill.findById(id);
+        const matchId = await Project.findById(id);
         if (!matchId) {
             return res.status(404).json({
                 message: 'Project Not Found'
