@@ -5,6 +5,7 @@ require('./config/DatabaseConnect');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const path = require('path')
 // Port
 const port = process.env.PORT || 3000;
 
@@ -14,8 +15,10 @@ const middlewares = [
     express.json(),
     morgan('dev'),
     helmet(),
+    
 ]
 app.use(middlewares);
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // routes
 const setRoute = require('./routes/routes');
